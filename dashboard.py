@@ -74,3 +74,34 @@ if selected_hour != "All":
 st.write("Matching articles:", len(filtered_df))
 st.dataframe(filtered_df)
 
+
+# Compare the two sentiment models
+st.subheader("AI Model Comparison")
+
+st.write(
+    "We compared two sentiment models using "
+    "50 manually labelled solar news headlines."
+)
+
+# Results from our evaluation
+results = pd.DataFrame({
+    "Model": ["RoBERTa", "VADER"],
+    "Agreement (%)": [42, 38]
+})
+
+# Show the comparison
+st.bar_chart(
+    results.set_index("Model")
+)
+
+st.write(
+    "RoBERTa agreed with 21 out of 50 human labels (42%). "
+    "VADER agreed with 19 out of 50 (38%)."
+)
+
+st.info(
+    "These scores measure agreement with our human labels, "
+    "not necessarily the true accuracy of the models. "
+    "The models analyse the tone of headlines, while human "
+    "labels may also reflect the impact on the solar industry."
+)
